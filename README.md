@@ -1,0 +1,2 @@
+# Minigames
+minigames minecraft plugin
