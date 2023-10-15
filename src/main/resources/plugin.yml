@@ -1,0 +1,23 @@
+name: Minigames
+version: 1.0
+main: me.bredisrising.minigames.Minigames
+api-version: 1.18
+authors: [BredIsRising]
+description: games that are quite mini
+
+commands:
+  hunter:
+    usage: /hunter
+    description: become a hunter
+  startManhunt:
+    usage: /startManhunt
+    description: start the manhunt
+  runner:
+    usage: /runner
+    description: become the runner
+  resetManhunt:
+    usage: /resetManhunt
+    description: reset the hunt
+  makeworld:
+    usage: /makeworld
+    description: make a new world
