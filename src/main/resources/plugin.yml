@@ -21,3 +21,6 @@ commands:
   makeworld:
     usage: /makeworld
     description: make a new world
+  tpworld:
+    usage: /tpworld
+    description: tp worlds

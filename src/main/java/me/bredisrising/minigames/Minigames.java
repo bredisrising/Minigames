@@ -36,7 +36,6 @@ public class Minigames extends JavaPlugin implements Listener {
 
         minigamesPlugin = this;
 
-        Bukkit.getWorlds().add(getServer().createWorld(new WorldCreator("TempWorld")));
 
         getServer().getPluginManager().registerEvents(this, this);
         getServer().getPluginManager().registerEvents(new Manhunt(this), this);
@@ -55,8 +54,8 @@ public class Minigames extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
         Player p = e.getPlayer();
-        if(p.getWorld().getName().contains("TempWorld")){
-            Location loc = new Location(Bukkit.getWorld("world"), Bukkit.getWorld("world").getSpawnLocation().getX(), Bukkit.getWorld("world").getSpawnLocation().getY(), Bukkit.getWorld("world").getSpawnLocation().getZ());
+        if(p.getWorld().getName().equals("world")){
+            Location loc = new Location(Bukkit.getWorld("manhunt_world"), Bukkit.getWorld("manhunt_world").getSpawnLocation().getX(), Bukkit.getWorld("manhunt_world").getSpawnLocation().getY(), Bukkit.getWorld("manhunt_world").getSpawnLocation().getZ());
             p.teleport(loc);
             p.setBedSpawnLocation(p.getLocation());
         }
@@ -68,9 +67,9 @@ public class Minigames extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onRespawn(PlayerRespawnEvent e){
-        if(e.getRespawnLocation().getWorld().getName().contains("TempWorld")){
-            e.setRespawnLocation(Bukkit.getWorld("world").getSpawnLocation());
-            e.getPlayer().setBedSpawnLocation(Bukkit.getWorld("world").getSpawnLocation(), true);
+        if(e.getRespawnLocation().getWorld().getName().equals("world")){
+            e.setRespawnLocation(Bukkit.getWorld("manhunt_world").getSpawnLocation());
+            e.getPlayer().setBedSpawnLocation(Bukkit.getWorld("manhunt_world").getSpawnLocation(), true);
         }else{
             e.setRespawnLocation(e.getPlayer().getBedSpawnLocation());
         }
@@ -79,22 +78,18 @@ public class Minigames extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPortal(PlayerPortalEvent e){
-        if(e.getPlayer().getWorld().getName().equalsIgnoreCase("world")){
+        if(e.getPlayer().getWorld().getName().equalsIgnoreCase("manhunt_world")){
             if(e.getCause().equals(PlayerTeleportEvent.TeleportCause.NETHER_PORTAL)){
-                e.getTo().setWorld(Bukkit.getWorld("world_nether"));
+                e.getTo().setWorld(Bukkit.getWorld("manhunt_nether"));
             }
             if(e.getCause().equals(PlayerTeleportEvent.TeleportCause.END_PORTAL)){
-                e.getTo().setWorld(Bukkit.getWorld("world_the_end"));
+                e.getTo().setWorld(Bukkit.getWorld("manhunt_end"));
             }
         }
-        if(e.getPlayer().getWorld().getName().equalsIgnoreCase("world_nether")){
-            if(e.getCause().equals(PlayerTeleportEvent.TeleportCause.NETHER_PORTAL)){
-                e.getTo().setWorld(Bukkit.getWorld("world"));
+        if(e.getPlayer().getWorld().getName().equalsIgnoreCase("manhunt_nether")) {
+            if (e.getCause().equals(PlayerTeleportEvent.TeleportCause.NETHER_PORTAL)) {
+                e.getTo().setWorld(Bukkit.getWorld("manhunt_world"));
             }
         }
-
-
-
     }
-
 }

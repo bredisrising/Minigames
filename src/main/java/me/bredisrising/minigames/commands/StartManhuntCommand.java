@@ -16,7 +16,7 @@ public class StartManhuntCommand implements CommandExecutor {
 
         if(sender instanceof Player){
             if(sender.hasPermission("startmanhunt.use")){
-                new Manhunt(Minigames.minigamesPlugin, true);
+                Manhunt.instance = new Manhunt(Minigames.minigamesPlugin, true);
             }
         }
 

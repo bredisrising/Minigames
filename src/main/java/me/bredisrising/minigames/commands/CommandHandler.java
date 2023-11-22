@@ -18,6 +18,7 @@ public class CommandHandler implements CommandExecutor {
         plugin.getCommand("resetManhunt").setExecutor(new ResetManhuntCommand());
         plugin.getCommand("runner").setExecutor(new RunnerCommand());
         plugin.getCommand("makeworld").setExecutor(new MakeWorldCommand());
+        plugin.getCommand("tpworld").setExecutor(new TPWorldCommand());
 
     }
 

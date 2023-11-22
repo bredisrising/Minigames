@@ -17,6 +17,8 @@ import java.util.*;
 public class Manhunt implements Listener {
     private Minigames plugin;
 
+    public static Manhunt instance;
+
     public Manhunt(Minigames plugin){
         this.plugin = plugin;
     }
@@ -24,75 +26,87 @@ public class Manhunt implements Listener {
     public Manhunt(Minigames plugin, boolean start){
         this.plugin = plugin;
         startCompassModifier();
+
+
     }
 
     void startCompassModifier(){
-        World world = Bukkit.getWorld("world");
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
         int taskID = scheduler.scheduleSyncRepeatingTask(this.plugin, new Runnable() {
             @Override
             public void run() {
                 for(String playerName : Minigames.hunterNames.keySet()){
                     Player p = Bukkit.getPlayerExact(playerName);
-                    if(Minigames.theRunner.getWorld().getName().equalsIgnoreCase("world")){
-                        if(p.getWorld().getName().equalsIgnoreCase("world")){
-                            //p.setCompassTarget(Minigames.theRunner.getLocation());
+                    if(Minigames.theRunner.getWorld().getName().equalsIgnoreCase("manhunt_world")){
+                        if(p.getWorld().getName().equalsIgnoreCase("manhunt_world")){
+                            p.setCompassTarget(Minigames.theRunner.getLocation());
 
-                            ItemStack compass = p.getInventory().getItem(8);
-                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
-                            compassMeta.setLodestoneTracked(false);
-                            compassMeta.setLodestone(Minigames.theRunner.getLocation());
+//                            ItemStack compass = p.getInventory().getItem(8);
+//                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
+//                            compassMeta.setLodestoneTracked(false);
+//                            compassMeta.setLodestone(Minigames.theRunner.getLocation());
+//
+//                            p.getInventory().getItem(8).setItemMeta(compassMeta);
 
-                            p.getInventory().getItem(8).setItemMeta(compassMeta);
 
-
-                        }else if(p.getWorld().getName().equalsIgnoreCase("world_nether")) {
-                            ItemStack compass = p.getInventory().getItem(8);
-                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
-                            compassMeta.setLodestoneTracked(false);
-                            compassMeta.setLodestone(Minigames.lastRunnerNetherPortalLocation);
-
-                            p.getInventory().getItem(8).setItemMeta(compassMeta);
+                        }else if(p.getWorld().getName().equalsIgnoreCase("manhunt_nether")) {
+//                            ItemStack compass = p.getInventory().getItem(8);
+//                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
+//                            compassMeta.setLodestoneTracked(false);
+//                            compassMeta.setLodestone(Minigames.lastRunnerNetherPortalLocation);
+//
+//                            p.getInventory().getItem(8).setItemMeta(compassMeta);
+                            p.setCompassTarget(Minigames.lastRunnerNetherPortalLocation);
                         }
-                    }else if(Minigames.theRunner.getWorld().getName().equalsIgnoreCase("world_nether")){
-                        if(p.getWorld().getName().equalsIgnoreCase("world")){
-                            ItemStack compass = p.getInventory().getItem(8);
-                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
-                            compassMeta.setLodestoneTracked(false);
-                            compassMeta.setLodestone(Minigames.lastRunnerOverworldPortalLocation);
+                    }else if(Minigames.theRunner.getWorld().getName().equalsIgnoreCase("manhunt_nether")){
+                        if(p.getWorld().getName().equalsIgnoreCase("manhunt_world")){
+//                            ItemStack compass = p.getInventory().getItem(8);
+//                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
+//                            compassMeta.setLodestoneTracked(false);
+//                            compassMeta.setLodestone(Minigames.lastRunnerOverworldPortalLocation);
+//
+//                            p.getInventory().getItem(8).setItemMeta(compassMeta);
+                            p.setCompassTarget(Minigames.lastRunnerOverworldPortalLocation);
 
-                            p.getInventory().getItem(8).setItemMeta(compassMeta);
-                        }else if(p.getWorld().getName().equalsIgnoreCase("world_nether")) {
-                            ItemStack compass = p.getInventory().getItem(8);
-                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
-                            compassMeta.setLodestoneTracked(false);
-                            compassMeta.setLodestone(Minigames.theRunner.getLocation());
+                        }else if(p.getWorld().getName().equalsIgnoreCase("manhunt_nether")) {
+//                            ItemStack compass = p.getInventory().getItem(8);
+//                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
+//                            compassMeta.setLodestoneTracked(false);
+//                            compassMeta.setLodestone(Minigames.theRunner.getLocation());
+//
+//                            p.getInventory().getItem(8).setItemMeta(compassMeta);
+                            p.setCompassTarget(Minigames.theRunner.getLocation());
 
-                            p.getInventory().getItem(8).setItemMeta(compassMeta);
 
                         }
                     }else{
-                        if(p.getWorld().getName().equalsIgnoreCase("world_nether")){
-                            ItemStack compass = p.getInventory().getItem(8);
-                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
-                            compassMeta.setLodestoneTracked(false);
-                            compassMeta.setLodestone(Minigames.lastRunnerNetherPortalLocation);
+                        if(p.getWorld().getName().equalsIgnoreCase("manhunt_nether")){
+//                            ItemStack compass = p.getInventory().getItem(8);
+//                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
+//                            compassMeta.setLodestoneTracked(false);
+//                            compassMeta.setLodestone(Minigames.lastRunnerNetherPortalLocation);
+//
+//                            p.getInventory().getItem(8).setItemMeta(compassMeta);
+                            p.setCompassTarget(Minigames.lastRunnerNetherPortalLocation);
 
-                            p.getInventory().getItem(8).setItemMeta(compassMeta);
-                        }else if(p.getWorld().getName().equalsIgnoreCase("world_the_end")){
-                            ItemStack compass = p.getInventory().getItem(8);
-                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
-                            compassMeta.setLodestoneTracked(false);
-                            compassMeta.setLodestone(Minigames.theRunner.getLocation());
+                        }else if(p.getWorld().getName().equalsIgnoreCase("manhunt_end")){
+//                            ItemStack compass = p.getInventory().getItem(8);
+//                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
+//                            compassMeta.setLodestoneTracked(false);
+//                            compassMeta.setLodestone(Minigames.theRunner.getLocation());
+//
+//                            p.getInventory().getItem(8).setItemMeta(compassMeta);
+                            p.setCompassTarget(Minigames.theRunner.getLocation());
 
-                            p.getInventory().getItem(8).setItemMeta(compassMeta);
                         }else{
-                            ItemStack compass = p.getInventory().getItem(8);
-                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
-                            compassMeta.setLodestoneTracked(false);
-                            compassMeta.setLodestone(Minigames.lastRunnerEndPortalLocation);
+//                            ItemStack compass = p.getInventory().getItem(8);
+//                            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
+//                            compassMeta.setLodestoneTracked(false);
+//                            compassMeta.setLodestone(Minigames.lastRunnerEndPortalLocation);
+//
+//                            p.getInventory().getItem(8).setItemMeta(compassMeta);
+                            p.setCompassTarget(Minigames.lastRunnerEndPortalLocation);
 
-                            p.getInventory().getItem(8).setItemMeta(compassMeta);
                         }
                     }
 
@@ -117,9 +131,9 @@ public class Manhunt implements Listener {
     public void onRunnerPortal(PlayerPortalEvent e){
         if(e.getPlayer().getName().equals(Minigames.theRunner.getName())){
             if(e.getCause() == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL){
-                if(e.getPlayer().getWorld().getName().equalsIgnoreCase("world")){
+                if(e.getPlayer().getWorld().getName().equalsIgnoreCase("manhunt_world")){
                     Minigames.lastRunnerOverworldPortalLocation = e.getPlayer().getLocation();
-                }else if(e.getPlayer().getWorld().getName().equalsIgnoreCase("world_nether")){
+                }else if(e.getPlayer().getWorld().getName().equalsIgnoreCase("manhunt_nether")){
                     Minigames.lastRunnerNetherPortalLocation = e.getPlayer().getLocation();
                 }
             }else if(e.getCause()==PlayerTeleportEvent.TeleportCause.END_PORTAL){
