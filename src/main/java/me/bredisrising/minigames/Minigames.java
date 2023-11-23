@@ -30,6 +30,7 @@ public class Minigames extends JavaPlugin implements Listener {
 
     public static String runnerName;
     public static HashMap<String, Integer> hunterNames;
+    public static HashMap<String, Integer> compasses;
 
     @Override
     public void onEnable() {
@@ -41,6 +42,8 @@ public class Minigames extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new Manhunt(this), this);
 
         hunterNames = new HashMap<>();
+        compasses = new HashMap<>();
+
 
         new CommandHandler(this);
 

@@ -13,15 +13,19 @@ public class HunterCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
         if(sender instanceof Player){
+
+
+
+
             Player cmdSender = (Player)sender;
             cmdSender.sendMessage(ChatColor.GOLD+"YOU ARE NOW A HUNTER!");
 
-            //Minigames.hunters.put(cmdSender.getName(), cmdSender);
             ItemStack compass = new ItemStack(Material.COMPASS);
 
             cmdSender.getInventory().setItem(8, compass);
 
             Minigames.hunterNames.put(cmdSender.getName(), 0);
+            Minigames.compasses.put(cmdSender.getName(), 8);
 
         }
 
